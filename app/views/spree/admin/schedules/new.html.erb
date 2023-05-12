@@ -1,0 +1,11 @@
+<% content_for :page_title do %>
+  <%= link_to plural_resource_name(Spree::Schedule), spree.admin_schedules_path %> /
+  <%= Spree.t(:new_schedule) %>
+<% end %>
+
+<%= form_for [:admin, @schedule] do |f| %>
+  <fieldset>
+    <%= render partial: 'form', locals: { f: f } %>
+    <%= render partial: 'spree/admin/shared/new_resource_links' %>
+  </fieldset>
+<% end %>

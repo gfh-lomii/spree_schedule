@@ -1,0 +1,35 @@
+<%= render partial: 'spree/shared/error_messages', locals: { target: @schedule } %>
+
+<div class="form-group">
+  <%= f.field_container :name do %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  <% end %>
+
+  <%= f.field_container :category, class: ['form-group'] do %>
+    <%= f.label :day %>
+    <%= f.select(:day, I18n.t('date.day_names').map(&:capitalize), { include_blank: Spree.t(:select_an_option) }, { class: 'select2' }) %>
+  <% end %>
+
+  <div id="starts_at_field" class="form-group">
+    <%= f.label :starts_at %>
+    <%= f.time_select :starts_at, { minute_step: 15 }, { class: 'form-control', style: 'display: inline; width: auto;' } %>
+  </div>
+
+  <div id="ends_at_field" class="form-group">
+    <%= f.label :ends_at %>
+    <%= f.time_select :ends_at, { minute_step: 15 }, { class: 'form-control', style: 'display: inline; width: auto;' } %>
+  </div>
+
+  <%= f.field_container :closed do %>
+    <%= f.label :closed %>
+    <%= f.check_box :closed, class: 'form-control' %>
+  <% end %>
+
+  <% if @stock_locations.present? %>
+    <%= f.field_container :stock_location_ids, class: ['form-group'] do %>
+      <%= f.label :stock_location_ids, Spree.t(:stock_locations) %>
+      <%= f.collection_select :stock_location_ids, @stock_locations, :id, :name, {}, { multiple: true, class: "select2" } %>
+    <% end %>
+  <% end %>
+</div>

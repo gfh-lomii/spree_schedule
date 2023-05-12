@@ -1,0 +1,19 @@
+<% content_for :page_title do %>
+  <%= Spree.t(plural_resource_name(Spree::Schedule)) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to Spree.t(:new_schedule), new_object_url, { class: "btn-success", icon: 'add', id: 'admin_new_schedule' } %>
+<% end if can?(:create, Spree::Schedule) %>
+
+<div data-hook='admin_schedule'>
+<% if @collection.any? %>
+  <div data-hook="table_schedules" class="mb-3">
+    <%= render partial: 'table_schedules', locals: { schedules: @schedules } %>
+  </div>
+<% else %>
+  <div class="alert alert-info alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::Schedule)) %>
+  </div>
+<% end %>
+</div>

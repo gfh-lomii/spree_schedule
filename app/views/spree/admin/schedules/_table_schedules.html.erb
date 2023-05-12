@@ -1,0 +1,40 @@
+<table class="table sortable" data-hook="schedule_table">
+  <thead>
+    <tr data-hook="schedule_header">
+      <th>
+        <%= I18n.t(:name, scope: 'activerecord.attributes.spree/schedule') %>
+      </th>
+      <th>
+        <%= I18n.t(:day, scope: 'activerecord.attributes.spree/schedule') %>
+      </th>
+      <th>
+        <%= I18n.t(:starts_at, scope: 'activerecord.attributes.spree/schedule') %>
+      </th>
+      <th>
+        <%= I18n.t(:ends_at, scope: 'activerecord.attributes.spree/schedule') %>
+      </th>
+      <th>
+        <%= I18n.t(:closed, scope: 'activerecord.attributes.spree/schedule') %>
+      </th>
+      <th>
+        <%= I18n.t(:active, scope: 'activerecord.attributes.spree/schedule') %>
+      </th>
+      <th class="actions"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @collection.each do |schedule| %>
+      <tr>
+        <td><%= schedule.name %></td>
+        <td><%= schedule.day %></td>
+        <td><%= schedule.starts_at.strftime('%H:%M') %></td>
+        <td><%= schedule.ends_at.strftime('%H:%M') %></td>
+        <td><%= Spree.t(schedule.closed) %></td>
+        <td><%= Spree.t(schedule.active) %></td>
+        <td class="actions actions-2 text-right">
+          <%= link_to_edit schedule, no_text: true, class: 'edit' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

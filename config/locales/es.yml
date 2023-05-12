@@ -1,0 +1,34 @@
+es:
+  activerecord:
+    attributes:
+      spree/schedule:
+        name: Nombre
+        day_code: Código día
+        day: Día
+        starts_at: Hora inicio
+        ends_at: Hora fin
+        closed: Cerrado
+        active: Activo
+    models:
+      spree/schedule:
+        one: Horario
+        other: Horarios
+  spree:
+    new_schedule: Nuevo horario
+  date:
+    abbr_day_names:
+      - dom
+      - lun
+      - mar
+      - mié
+      - jue
+      - vie
+      - sáb
+    day_names:
+      - domingo
+      - lunes
+      - martes
+      - miércoles
+      - jueves
+      - viernes
+      - sábado
