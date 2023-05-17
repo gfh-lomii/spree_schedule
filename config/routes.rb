@@ -4,10 +4,12 @@ Spree::Core::Engine.add_routes do
   end
 
   namespace :api, defaults: { format: 'json' } do
-    namespace :v1 do
-      resources :stock_locations do
-        member do
-          get :schedules
+    namespace :v2 do
+      namespace :storefront do
+        resources :stock_locations, only: %i[index, show] do
+          member do
+            get :schedules
+          end
         end
       end
     end
