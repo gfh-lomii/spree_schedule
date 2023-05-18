@@ -23,7 +23,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @collection.each do |schedule| %>
+    <% @collection.order(:day_code).each do |schedule| %>
       <tr>
         <td><%= schedule.name %></td>
         <td><%= schedule.day %></td>

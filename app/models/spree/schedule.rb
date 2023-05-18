@@ -9,7 +9,7 @@ module Spree
 
     validates :day_code, :day, :starts_at, :ends_at, presence: true
 
-    scope :enables, -> { where(closed:  false) }
+    scope :enables, -> { where(active:  true) }
 
     def set_day_code
       self.day_code = I18n.t('date.day_names').map(&:downcase).find_index(day.downcase)
