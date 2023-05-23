@@ -10,7 +10,7 @@ module Spree
           private
 
           def scope
-            Spree::StockLocation.where(active: true)
+            Spree::StockLocation.active
           end
 
           def resource
