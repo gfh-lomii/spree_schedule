@@ -10,7 +10,7 @@ module Spree
       end
 
       def set_stock_locations
-        @stock_locations = Spree::StockLocation.active.count
+        @stock_locations = Spree::StockLocation.active
       end
     end
   end
