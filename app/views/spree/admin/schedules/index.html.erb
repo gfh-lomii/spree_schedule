@@ -6,8 +6,36 @@
   <%= button_link_to Spree.t(:new_schedule), new_object_url, { class: "btn-success", icon: 'add', id: 'admin_new_schedule' } %>
 <% end if can?(:create, Spree::Schedule) %>
 
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_products_sidebar">
+    <%= search_form_for @search, url: spree.admin_schedules_path, method: :get, as: :q do |f| %>
+      <%= hidden_field_tag 'q[stock_locations_id_eq]', params[:stock_locations_id_eq] %>
+
+      <div data-hook="admin_products_index_search" class="row">
+        <div class="col-12 col-lg-6">
+          <div class="form-group">
+            <%= f.label :name_cont, Spree.t(:name) %>
+            <%= f.search_field :name_cont, size: 15, class: "form-control js-quick-search-target js-filterable" %>
+          </div>
+        </div>
+        <div class="col-12 col-lg-6">
+          <div class="form-group">
+            <%= f.label :stock_locations_id_eq, Spree.t(:stock_location) %>
+            <%= select_tag :stock_locations_id_eq, options_from_collection_for_select(@stock_locations, :id, :name, params[:stock_locations_id_eq]), include_blank: true, prompt: Spree.t(:select_stock_location), class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div data-hook="admin_products_index_search_buttons" class="form-actions">
+        <%= f.submit Spree.t(:search), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
 <div data-hook='admin_schedule'>
-<% if @collection.any? %>
+<% if @schedules.any? %>
   <div data-hook="table_schedules" class="mb-3">
     <%= render partial: 'table_schedules', locals: { schedules: @schedules } %>
   </div>

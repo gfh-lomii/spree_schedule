@@ -11,6 +11,8 @@ module Spree
 
     scope :enables, -> { where(active:  true) }
 
+    self.whitelisted_ransackable_associations = ['stock_locations']
+
     def set_day_code
       self.day_code = I18n.t('date.day_names').map(&:downcase).find_index(day.downcase)
     end
