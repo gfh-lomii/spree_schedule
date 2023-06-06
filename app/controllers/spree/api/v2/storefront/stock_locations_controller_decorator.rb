@@ -4,7 +4,7 @@ module Spree
       module Storefront
         module StockLocationsControllerDecorator
           def schedules
-            render json: { status: 'ok', schedules: resource.schedules.enables.order(:day_code) }
+            render json: { status: 'ok', schedules: resource.schedules.enables.order(:day_code), stock_location_id: resource.id }
           end
 
           private
