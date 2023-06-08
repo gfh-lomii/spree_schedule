@@ -11,6 +11,7 @@ Spree::Core::Engine.add_routes do
             get :schedules
           end
         end
+        resources :shipments, only: %i[show, update]
       end
     end
   end
