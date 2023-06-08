@@ -11,7 +11,7 @@ module Spree
       private
 
       def search_params
-        params.require(:q).permit(:stock_locations_id_eq, :name_cont, :commit)
+        #params.require(:q).permit(:stock_locations_id_eq, :name_cont, :commit)
       end
 
       def set_stock_locations
