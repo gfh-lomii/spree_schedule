@@ -9,7 +9,9 @@ module Spree
 
     validates :day_code, :day, :starts_at, :ends_at, presence: true
 
-    scope :enables, -> { where(active:  true) }
+    scope :enables, -> { where(active: true) }
+    scope :today, -> { where(day_code: Date.current.wday) }
+    scope :tomorrow, -> { where(day_code: Date.tomorrow.wday) }
 
     self.whitelisted_ransackable_associations = ['stock_locations']
 
