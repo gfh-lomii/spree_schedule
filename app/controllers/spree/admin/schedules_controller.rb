@@ -1,8 +1,8 @@
 module Spree
   module Admin
     class SchedulesController < ResourceController
-      before_action :set_search_stock_locations, only: %i[index]
       before_action :set_stock_locations
+      before_action :set_search_stock_locations, only: %i[index]
 
       private
 
@@ -18,7 +18,8 @@ module Spree
       end
 
       def set_search_stock_locations
-        @search_stock_locations = current_store.stock_locations.active.map { |stock_location| [stock_location.name, stock_location.id] }
+        @search_stock_locations =
+          @stock_locations.map { |stock_location| [stock_location.name, stock_location.id] }
         @search_stock_locations << [Spree.t('all'), 0]
       end
     end
