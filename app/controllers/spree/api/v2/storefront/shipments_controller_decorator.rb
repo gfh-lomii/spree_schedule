@@ -5,7 +5,7 @@ module Spree
         module ShipmentsControllerDecorator
           def update
             if resource.update(shipment_params)
-              render json: { status: 'ok', journey: resource }
+              render_serialized_payload { serialize_resource(resource) }
             else
               render json: { status: :unprocessable_entity, error: resource.errors }
             end
